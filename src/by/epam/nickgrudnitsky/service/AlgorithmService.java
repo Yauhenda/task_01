@@ -1,30 +1,47 @@
 package by.epam.nickgrudnitsky.service;
 
 
+import by.epam.nickgrudnitsky.entity.MontyHallProblem;
+import by.epam.nickgrudnitsky.entity.Problem;
+
 import java.util.ArrayList;
 import java.util.List;
 
-import static by.epam.nickgrudnitsky.util.DataInput.readMenuNumber;
+import static by.epam.nickgrudnitsky.util.DataInput.readNumber;
+import static by.epam.nickgrudnitsky.util.Validator.validateMenuItem;
 
 public class AlgorithmService {
+    private List<String> startupMenu = new ArrayList<>();
 
-    private static List<String> startupMenu = new ArrayList<>();
-
-    static {
+     {
         startupMenu.add("1 - Monty Hall problem.");
         startupMenu.add("2 - Birthday problem.");
         startupMenu.add("3 - Marriage problem.");
         startupMenu.add("0 - Exit program.");
     }
 
-    public static void runProgram() {
+    public void runProgram() {
+        int menuItem;
+
         outputMenuToConsole(startupMenu);
-        process(readMenuNumber());
+        menuItem = readNumber();
+        if (validateMenuItem(menuItem)){
+            process(menuItem);
+        } else {
+            printMenuValidationFailure();
+            runProgram();
+        }
     }
 
-    private static void process(int menuItem) {
+    private void runAlgorithm(Problem problem) {
+        problem.checkAlgorithm();
+    }
+
+    private void process(int menuItem) {
         switch (menuItem) {
             case 1: {
+                runAlgorithm(new MontyHallProblem());
+                runProgram();
                 break;
             }
             case 2: {
@@ -42,11 +59,14 @@ public class AlgorithmService {
         }
     }
 
-    private static void outputMenuToConsole(List<String> startupMenu) {
+    private void outputMenuToConsole(List<String> startupMenu) {
         System.out.println("Enter a number to continue:");
         for (String menuItem : startupMenu) {
             System.out.println(menuItem);
         }
     }
 
+    private void printMenuValidationFailure() {
+        System.out.println("Choose from the given numbers.");
+    }
 }
