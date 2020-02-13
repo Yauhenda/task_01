@@ -2,6 +2,7 @@ package by.epam.nickgrudnitsky.service;
 
 
 import by.epam.nickgrudnitsky.entity.BirthdayProblem;
+import by.epam.nickgrudnitsky.entity.MarriageProblem;
 import by.epam.nickgrudnitsky.entity.MontyHallProblem;
 import by.epam.nickgrudnitsky.entity.Problem;
 
@@ -51,6 +52,8 @@ public class AlgorithmService {
                 break;
             }
             case 3: {
+                runAlgorithm(new MarriageProblem());
+                runProgram();
                 break;
             }
             case 0: {
