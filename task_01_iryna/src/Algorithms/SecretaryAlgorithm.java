@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 
-public class SecretaryAlgorithm extends Algorithm {
+public class SecretaryAlgorithm implements Algorithm {
 
     private static final int NUMBER_OF_TRIES = 100_000;
     private static final int NUMBER_OF_CANDIDATES = 100;

@@ -1,8 +1,6 @@
 package Algorithms;
 
-import Algorithms.Algorithm;
-
-public class BirthdayAlgorithm extends Algorithm {
+public class BirthdayAlgorithm implements Algorithm {
     private static final int DAYS_IN_A_YEAR = 366;
     private static final int NUMBER_OF_PEOPLE = 23;
 

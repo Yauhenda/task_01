@@ -30,8 +30,8 @@ public class Menu {
                 }
             }
             if (!foundOption) {
-                //System.out.println("YOU SHALL NOT PASS!");
-                throw new IllegalArgumentException();
+                System.out.println("YOU SHALL NOT PASS!");
+                //throw new IllegalArgumentException();
             }
         }
 

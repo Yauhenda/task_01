@@ -1,13 +1,11 @@
 package Algorithms;
 
-import Algorithms.Algorithm;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
-public class MontyHallAlgorithm extends Algorithm {
+public class MontyHallAlgorithm implements Algorithm {
 
     private static final int NUMBER_OF_TRIES = 100_000;
     private List<String> chooses = new ArrayList(Arrays.asList("k", "k", "a"));

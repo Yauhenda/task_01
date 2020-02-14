@@ -1,7 +1,7 @@
 package Algorithms;
 
-public abstract class Algorithm {
+public interface Algorithm {
 
-    public abstract void printResult();
+    void printResult();
 
 }
