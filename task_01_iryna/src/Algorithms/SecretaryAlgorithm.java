@@ -33,20 +33,20 @@ public class SecretaryAlgorithm implements Algorithm {
     public int findBestCandidate(ArrayList<Integer> list, int n) {
         int result = 0;
 
-        int sample_size = roundNo((float) (n / e));
+        int sampleSize = roundNo((float) (n / e));
 
         int best = 0;
-        for (int i = 1; i < sample_size; i++)
+        for (int i = 1; i < sampleSize; i++)
             if (list.get(i) > list.get(best))
                 best = i;
 
-        for (int i = sample_size; i < n; i++)
+        for (int i = sampleSize; i < n; i++)
             if (list.get(i) >= list.get(best)) {
                 best = i;
                 break;
             }
 
-        if (best >= sample_size) {
+        if (best >= sampleSize) {
             result++;
         }
 
