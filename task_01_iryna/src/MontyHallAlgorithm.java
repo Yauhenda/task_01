@@ -5,7 +5,7 @@ import java.util.List;
 
 public class MontyHallAlgorithm extends Algorithm{
 
-    private static final int NUMBER_OF_TRIES = 1000000;
+    private static final int NUMBER_OF_TRIES = 100_000;
     private List<String> chooses = new ArrayList(Arrays.asList("k", "k", "a"));
 
     public double countFirstProbability() {
@@ -32,9 +32,8 @@ public class MontyHallAlgorithm extends Algorithm{
     }
 
     public void validateNumberOfTries() {
-        if (NUMBER_OF_TRIES < 100 && NUMBER_OF_TRIES > 100000) {
+        if (NUMBER_OF_TRIES < 100 || NUMBER_OF_TRIES > 100000) {
             throw new IllegalArgumentException(){
-
             };
         }
     }
