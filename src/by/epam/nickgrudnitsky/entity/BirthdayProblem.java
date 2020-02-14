@@ -25,7 +25,7 @@ public class BirthdayProblem implements Problem {
         numberOfPeople = readNumber();
         numberOfChecks = readNumber();
         if (validateNumberOfPeople(numberOfPeople) && validateNumberOfChecks(numberOfChecks)) {
-            runCheck(numberOfChecks, numberOfPeople);
+            runCheck();
         } else {
             printValidationFailure();
             checkAlgorithm();
@@ -34,7 +34,7 @@ public class BirthdayProblem implements Problem {
         printResults();
     }
 
-    private void runCheck(int numberOfChecks, int numberOfPeople) {
+    private void runCheck() {
         for (int i = 0; i < numberOfChecks; i++) {
             fillBirthdays();
 

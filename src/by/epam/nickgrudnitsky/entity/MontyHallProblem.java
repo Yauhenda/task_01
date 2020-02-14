@@ -10,9 +10,7 @@ import static by.epam.nickgrudnitsky.util.Validator.validateNumberOfChecks;
 
 public class MontyHallProblem implements Problem {
     private static Random random = new Random();
-    private boolean door1;
-    private boolean door2;
-    private boolean door3;
+    private final static int DOORS = 3;
     private boolean chosenDoor;
     private int numberOfChecks;
     private int numberOfWinningsWhenChangeChoice = 0;
@@ -23,17 +21,15 @@ public class MontyHallProblem implements Problem {
         printIntroduction();
         numberOfChecks = readNumber();
         if (validateNumberOfChecks(numberOfChecks)) {
-            runCheck(numberOfChecks);
+            runCheck();
         } else {
             printValidationFailure();
             checkAlgorithm();
         }
-
     }
 
-    private void runCheck(int numberOfChecks) {
+    private void runCheck() {
         for (int i = 0; i < numberOfChecks; i++) {
-            fillDoors();
             chooseDoor();
             if (chosenDoor) {
                 numberOfWinningsWhenDoNotChangeChoice++;
@@ -45,47 +41,7 @@ public class MontyHallProblem implements Problem {
     }
 
     private void chooseDoor() {
-        switch (randomDoor()) {
-            case 1: {
-                chosenDoor = door1;
-                break;
-            }
-            case 2: {
-                chosenDoor = door2;
-                break;
-            }
-            case 3: {
-                chosenDoor = door3;
-                break;
-            }
-        }
-    }
-
-    private int randomDoor() {
-        return (random.nextInt(3) + 1);
-    }
-
-    private void fillDoors() {
-        switch (randomDoor()) {
-            case 1: {
-                door1 = true;
-                door2 = false;
-                door3 = false;
-                break;
-            }
-            case 2: {
-                door1 = false;
-                door2 = true;
-                door3 = false;
-                break;
-            }
-            case 3: {
-                door1 = false;
-                door2 = false;
-                door3 = true;
-                break;
-            }
-        }
+        chosenDoor = random.nextInt(DOORS) + 1 == 1;
     }
 
     private void printIntroduction() {

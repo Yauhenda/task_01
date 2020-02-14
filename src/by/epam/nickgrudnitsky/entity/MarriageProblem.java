@@ -32,15 +32,18 @@ public class MarriageProblem implements Problem {
 
     private void runCheck() {
         double step = Math.round(numberOfFiances / Math.exp(1));
-        for (int i = 0; i < numberOfChecks; i++) {
-            fillFiances();
-            for (int j = 0; j < step; j++) {
-                if (fianceQuality < fiances.get(j)) {
-                    fianceQuality = fiances.get(j);
-                }
-            }
+        fillFiances();
 
-            for (int j = (int) step; j < numberOfFiances; j++) {
+        for (int i = 0; i < numberOfChecks; i++) {
+
+            Collections.shuffle(fiances);
+
+            for (int j = 0; j < numberOfFiances; j++) {
+                if (fianceQuality < fiances.get(j) && j < step) {
+                    fianceQuality = fiances.get(j);
+                    continue;
+                }
+
                 if (fianceQuality < fiances.get(j)) {
                     chosenFiance = fiances.get(j);
                     break;
@@ -50,8 +53,7 @@ public class MarriageProblem implements Problem {
             if (chosenFiance == numberOfFiances) {
                 numberOfCorrectChoices++;
             }
-
-            fiances.clear();
+            
             fianceQuality = 0;
             chosenFiance = 0;
         }
@@ -61,7 +63,6 @@ public class MarriageProblem implements Problem {
         for (int i = 1; i <= numberOfFiances; i++) {
             fiances.add(i);
         }
-        Collections.shuffle(fiances);
     }
 
     private void printIntroduction() {
