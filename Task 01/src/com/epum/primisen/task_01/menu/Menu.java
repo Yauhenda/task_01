@@ -6,6 +6,7 @@ public class Menu {
 
     private String descriptionOfMenu;
     private HashMap<Integer, String> gameList;
+    private int numberOfGame;
 
     public Menu(){
         gameList = new HashMap<Integer, String>();
@@ -31,4 +32,9 @@ public class Menu {
         Integer key = (Integer)gameList.size() + 1;
         this.gameList.put(key, game);
     }
+
+    public int getNumberOfGame() {
+        return gameList.size();
+    }
+
 }
