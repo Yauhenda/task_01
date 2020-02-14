@@ -1,7 +1,5 @@
 package Algorithms;
 
-import Algorithms.Algorithm;
-
 import java.util.ArrayList;
 import java.util.Collections;
 
@@ -20,7 +18,7 @@ public class SecretaryAlgorithm extends Algorithm {
         }
         for (int i = 0; i < NUMBER_OF_TRIES; i++) {
             Collections.shuffle(candidate);
-            if (printBestCandidate(candidate, NUMBER_OF_CANDIDATES) != 0) {
+            if (findBestCandidate(candidate, NUMBER_OF_CANDIDATES) != 0) {
                 result++;
             }
         }
@@ -32,7 +30,7 @@ public class SecretaryAlgorithm extends Algorithm {
         System.out.println(result);
     }
 
-    public int printBestCandidate(ArrayList<Integer> list, int n) {
+    public int findBestCandidate(ArrayList<Integer> list, int n) {
         int result = 0;
 
         int sample_size = roundNo((float) (n / e));
