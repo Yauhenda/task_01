@@ -13,6 +13,7 @@ public class DataInput {
         } catch (InputMismatchException e) {
             System.out.println("Invalid input data.");
         }
+
         return number;
     }
 }

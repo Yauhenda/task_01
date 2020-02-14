@@ -8,7 +8,7 @@ import java.util.Random;
 import static by.epam.nickgrudnitsky.util.DataInput.readNumber;
 import static by.epam.nickgrudnitsky.util.Validator.validateNumberOfChecks;
 
-public class MontyHallProblem implements Problem {
+public class MontyHallProblem extends Problem {
     private static Random random = new Random();
     private final static int DOORS = 3;
     private boolean chosenDoor;
@@ -16,10 +16,11 @@ public class MontyHallProblem implements Problem {
     private int numberOfWinningsWhenChangeChoice = 0;
     private int numberOfWinningsWhenDoNotChangeChoice = 0;
 
-    @Override
     public void checkAlgorithm() {
         printIntroduction();
+
         numberOfChecks = readNumber();
+
         if (validateNumberOfChecks(numberOfChecks)) {
             runCheck();
         } else {
@@ -28,16 +29,26 @@ public class MontyHallProblem implements Problem {
         }
     }
 
+    public MontyHallProblem() {
+        setName("Monty Hall problem.");
+    }
+
     private void runCheck() {
         for (int i = 0; i < numberOfChecks; i++) {
+
             chooseDoor();
+
             if (chosenDoor) {
                 numberOfWinningsWhenDoNotChangeChoice++;
             } else {
                 numberOfWinningsWhenChangeChoice++;
             }
         }
+
         printResults();
+
+        numberOfWinningsWhenChangeChoice = 0;
+        numberOfWinningsWhenDoNotChangeChoice = 0;
     }
 
     private void chooseDoor() {
@@ -49,12 +60,12 @@ public class MontyHallProblem implements Problem {
     }
 
     private void printValidationFailure() {
-        System.out.printf("The number of checks must be between %d and %d.\n", Validator.MIN_NUMBER_OF_CHECKS, Validator.MAX_NUMBER_OF_CHECKS);
+        System.out.printf("The number of checks must be between %d and %d.\n",
+                Validator.MIN_NUMBER_OF_CHECKS, Validator.MAX_NUMBER_OF_CHECKS);
     }
 
     private void printResults() {
         System.out.printf("Wins out of %d:\n   when changing choices - %d.\n   when do not changing choices - %d.\n",
                 numberOfChecks, numberOfWinningsWhenChangeChoice, numberOfWinningsWhenDoNotChangeChoice);
     }
-
 }

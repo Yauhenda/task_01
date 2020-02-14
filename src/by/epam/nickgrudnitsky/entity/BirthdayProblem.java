@@ -10,7 +10,7 @@ import static by.epam.nickgrudnitsky.util.DataInput.readNumber;
 import static by.epam.nickgrudnitsky.util.Validator.validateNumberOfChecks;
 import static by.epam.nickgrudnitsky.util.Validator.validateNumberOfPeople;
 
-public class BirthdayProblem implements Problem {
+public class BirthdayProblem extends Problem {
     private final static int DAYS_IN_A_YEAR = 365;
     private static Random random = new Random();
     private int numberOfPeople;
@@ -18,12 +18,16 @@ public class BirthdayProblem implements Problem {
     private int numberOfCoincidences;
     private Set<Integer> birthdays = new HashSet<>();
 
+    public BirthdayProblem() {
+        setName("Birthday problem.");
+    }
 
-    @Override
     public void checkAlgorithm() {
         printIntroduction();
+
         numberOfPeople = readNumber();
         numberOfChecks = readNumber();
+
         if (validateNumberOfPeople(numberOfPeople) && validateNumberOfChecks(numberOfChecks)) {
             runCheck();
         } else {
@@ -31,16 +35,20 @@ public class BirthdayProblem implements Problem {
             checkAlgorithm();
             return;
         }
+
         printResults();
+
+        numberOfCoincidences = 0;
     }
 
     private void runCheck() {
         for (int i = 0; i < numberOfChecks; i++) {
             fillBirthdays();
-
+            
             if (birthdays.size() < numberOfPeople) {
                 numberOfCoincidences++;
             }
+
             birthdays.clear();
         }
     }
@@ -61,7 +69,9 @@ public class BirthdayProblem implements Problem {
     }
 
     private void printValidationFailure() {
-        System.out.printf("The number of people must be between %d and %d.\n", Validator.MIN_NUMBER_OF_PEOPLE, Validator.MAX_NUMBER_OF_PEOPLE);
-        System.out.printf("The number of checks must be between %d and %d.\n", Validator.MIN_NUMBER_OF_CHECKS, Validator.MAX_NUMBER_OF_CHECKS);
+        System.out.printf("The number of people must be between %d and %d.\n",
+                Validator.MIN_NUMBER_OF_PEOPLE, Validator.MAX_NUMBER_OF_PEOPLE);
+        System.out.printf("The number of checks must be between %d and %d.\n",
+                Validator.MIN_NUMBER_OF_CHECKS, Validator.MAX_NUMBER_OF_CHECKS);
     }
 }

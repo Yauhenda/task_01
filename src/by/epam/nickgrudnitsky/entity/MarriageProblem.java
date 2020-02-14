@@ -7,15 +7,19 @@ import java.util.*;
 import static by.epam.nickgrudnitsky.util.DataInput.readNumber;
 import static by.epam.nickgrudnitsky.util.Validator.*;
 
-public class MarriageProblem implements Problem {
+public class MarriageProblem extends Problem {
     private int numberOfFiances;
+
+    public MarriageProblem() {
+        setName("Marriage problem.");
+    }
+
     private int numberOfChecks;
     private int fianceQuality;
     private int chosenFiance;
     private int numberOfCorrectChoices;
     private List<Integer> fiances = new ArrayList<>();
 
-    @Override
     public void checkAlgorithm() {
         printIntroduction();
         numberOfFiances = readNumber();
@@ -28,6 +32,7 @@ public class MarriageProblem implements Problem {
             return;
         }
         printResults();
+        numberOfCorrectChoices = 0;
     }
 
     private void runCheck() {
@@ -53,7 +58,7 @@ public class MarriageProblem implements Problem {
             if (chosenFiance == numberOfFiances) {
                 numberOfCorrectChoices++;
             }
-            
+
             fianceQuality = 0;
             chosenFiance = 0;
         }
@@ -75,7 +80,9 @@ public class MarriageProblem implements Problem {
     }
 
     private void printValidationFailure() {
-        System.out.printf("The number of fiances must be between %d and %d.\n", MIN_NUMBER_OF_FIANCES, MAX_NUMBER_OF_FIANCES);
-        System.out.printf("The number of checks must be between %d and %d.\n", Validator.MIN_NUMBER_OF_CHECKS, Validator.MAX_NUMBER_OF_CHECKS);
+        System.out.printf("The number of fiances must be between %d and %d.\n",
+                MIN_NUMBER_OF_FIANCES, MAX_NUMBER_OF_FIANCES);
+        System.out.printf("The number of checks must be between %d and %d.\n",
+                Validator.MIN_NUMBER_OF_CHECKS, Validator.MAX_NUMBER_OF_CHECKS);
     }
 }

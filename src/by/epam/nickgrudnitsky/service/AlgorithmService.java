@@ -6,28 +6,29 @@ import by.epam.nickgrudnitsky.entity.MarriageProblem;
 import by.epam.nickgrudnitsky.entity.MontyHallProblem;
 import by.epam.nickgrudnitsky.entity.Problem;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 
 import static by.epam.nickgrudnitsky.util.DataInput.readNumber;
 import static by.epam.nickgrudnitsky.util.Validator.validateMenuItem;
 
 public class AlgorithmService {
-    private List<String> startupMenu = new ArrayList<>();
+    private Map<Integer, Problem> startupMenu = new HashMap<>();
 
-     {
-        startupMenu.add("1 - Monty Hall problem.");
-        startupMenu.add("2 - Birthday problem.");
-        startupMenu.add("3 - Marriage problem.");
-        startupMenu.add("0 - Exit program.");
+    {
+        startupMenu.put(1, new MontyHallProblem());
+        startupMenu.put(2, new BirthdayProblem());
+        startupMenu.put(3, new MarriageProblem());
     }
 
     public void runProgram() {
         int menuItem;
 
         outputMenuToConsole(startupMenu);
+
         menuItem = readNumber();
-        if (validateMenuItem(menuItem)){
+
+        if (validateMenuItem(menuItem)) {
             process(menuItem);
         } else {
             printMenuValidationFailure();
@@ -35,41 +36,22 @@ public class AlgorithmService {
         }
     }
 
-    private void runAlgorithm(Problem problem) {
-        problem.checkAlgorithm();
-    }
-
     private void process(int menuItem) {
-        switch (menuItem) {
-            case 1: {
-                runAlgorithm(new MontyHallProblem());
-                runProgram();
-                break;
-            }
-            case 2: {
-                runAlgorithm(new BirthdayProblem());
-                runProgram();
-                break;
-            }
-            case 3: {
-                runAlgorithm(new MarriageProblem());
-                runProgram();
-                break;
-            }
-            case 0: {
-                break;
-            }
-            default: {
-                runProgram();
-            }
+        if (menuItem == 0) {
+            return;
         }
+        startupMenu.get(menuItem).checkAlgorithm();
+        runProgram();
     }
 
-    private void outputMenuToConsole(List<String> startupMenu) {
+    private void outputMenuToConsole(Map<Integer, Problem> startupMenu) {
         System.out.println("Enter a number to continue:");
-        for (String menuItem : startupMenu) {
-            System.out.println(menuItem);
+
+        for (Map.Entry<Integer, Problem> problem : startupMenu.entrySet()) {
+            System.out.println(problem.getKey() + " - " + problem.getValue().getName());
         }
+
+        System.out.println("0 - Exit.");
     }
 
     private void printMenuValidationFailure() {
