@@ -3,6 +3,7 @@ package com.epam;
 import java.util.Scanner;
 
 import static com.epam.BirthdayParadox.birthdayParadoxAlgorithm;
+import static com.epam.LegibleBride.legibleBrideAlgorithm;
 import static com.epam.MontyHallParadox.montyHallAlgorithm;
 
 public class Main {
@@ -30,9 +31,7 @@ public class Main {
     public static int keyboardInput() {
         Scanner scanner = new Scanner(System.in);
         String inputString = scanner.nextLine();
-        int inputNumber = checkIsInteger(inputString);
-
-        return inputNumber;
+        return checkIsInteger(inputString);
     }
 
     public static int checkIsInteger(String inputString) {
@@ -45,30 +44,19 @@ public class Main {
         return Integer.parseInt(inputString);
     }
 
-//    public static int inputCheck(int actionNumber) {
-//        if (actionNumber > 0 && actionNumber < 5) {
-//            return actionNumber;
-//        }
-//        System.out.println("Данные введены некорректно, пожалуйста, введите число от 1 до 4");
-//        return keyboardInput();
-//    }
-
     public static void chooseAlgorithm(int actionNumber) {
         switch (actionNumber) {
-            case 1:montyHallAlgorithm();
+            case 1:
+                montyHallAlgorithm();
                 break;
             case 2:
                 birthdayParadoxAlgorithm();
                 break;
-            case 3:
+            case 3: legibleBrideAlgorithm();
                 break;
             case 4:
                 System.exit(0);
         }
     }
-
-//    public static void errorMessage() {
-//        System.out.println("Данные введены некорректно, пожалуйста, введите число от 1 до 4");
-//    }
 }
 

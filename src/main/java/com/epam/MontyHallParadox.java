@@ -5,48 +5,25 @@ import java.util.Random;
 import static com.epam.Main.keyboardInput;
 
 public class MontyHallParadox {
-    public static final int maxAttemp = 10;
-    public static final int minAttemp = 1;
-    public static boolean prize[] = new boolean[3];
-    public static int winStatictics[];
+    public static final int MAX_ATTEMP = 1_000_000;
+    public static final int MIN_ATTEMP = 1;
+    public static final int CHOICE = 1;
 
     public static void montyHallAlgorithm() {
         int attempt;
-        int doorNumber;
-        int loseDoor;
-        int answer;
-        int finalAnswer = 1;
+        double winStatictics = 0;
         do {
-            System.out.println("введите количество попыток (от 1 до 10)");
+            System.out.println("введите количество попыток (от 1 до 1_000_000)");
             attempt = keyboardInput();
-        } while (attempt < minAttemp || attempt > maxAttemp);
-        winStatictics = new int[attempt];
+        } while (attempt < MIN_ATTEMP || attempt > MAX_ATTEMP);
         for (int i = 0; i < attempt; i++) {
-            prize = generatePrize(prize);
-            do {
-                System.out.println("перед вами 3 двери: номер -'1', номер -'2', номер -'3', выберите любую дверь:");
-                doorNumber = keyboardInput();
-            } while (doorNumber < 1 || doorNumber > 3);
-            loseDoor = checkDoors(prize, doorNumber);
-            for (int j = 1; j < prize.length + 1; j++) {
-                if (j != doorNumber && j != loseDoor) {
-                    do {
-                        System.out.println("Хотите ли вы поменять свой выбор в пользу двери номер -'" + j + "'");
-                        System.out.println("1 -'Да'");
-                        System.out.println("2-'Нет'");
-                        answer = keyboardInput();
-                    } while (answer < 1 || answer > 2);
-                    if (checkAnswer(answer)) {
-                        doorNumber = j;
-                    }
-                }
-            }
-            checkWin(prize,doorNumber);
+            winStatictics += winCheck(generatePrize(), CHOICE);
         }
+        printResult(winStatictics / attempt, attempt);
     }
 
-
-    public static boolean[] generatePrize(boolean[] prize) {
+    public static boolean[] generatePrize() {
+        boolean[] prize = new boolean[3];
         Random random = new Random();
         int number = random.nextInt(3) + 1;
         switch (number) {
@@ -69,36 +46,20 @@ public class MontyHallParadox {
         return prize;
     }
 
-    public static int checkDoors(boolean[] prize, int doorsNumber) {
+    public static int winCheck(boolean[] prize, int doorsNumber) {
 
         for (int i = 1; i < prize.length + 1; i++) {
-            if (prize[i - 1] == false && i != doorsNumber) {
-                System.out.println("За дверью номер -'" + i + "' приза нет!");
-                return i;
+            if (prize[i - 1] == true && i == doorsNumber) {
+                return 1;
             }
         }
         return 0;
     }
 
-    public static boolean checkAnswer(int answer) {
-        if (answer == 1) {
-            return true;
-        } else {
-            return false;
-        }
-
-    }
-    public static void checkWin(boolean[] prize, int doorNumber){
-       if(prize[doorNumber-1]==true){
-           System.out.println("вы победили");
-        }
-        else {
-           System.out.println("Вы проиграли");
-       }
-
-    }
-
-    public static void errorMessage() {
-        System.out.println("Данные введены некорректно, пожалуйста, введите число от 1 до 10");
+    public static void printResult(double winStatistics, int attempt) {
+        System.out.printf("При " + attempt + " количестве попыток, вероятность победить при смене выбора двери = " + "%.2f", +100 * (1 - winStatistics));
+        System.out.println("%");
+        System.out.printf("При " + attempt + " количестве попыток, вероятность победить без смены выбора двери = " + "%.2f", +100 * ( winStatistics));
+        System.out.println("%");
     }
 }
