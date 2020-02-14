@@ -18,7 +18,7 @@ public class MontyHall {
         this.door = door;
     }
 
-    public boolean getDoor(int index){//обработать исключение, если значение индекса недопустимо
+    public boolean getDoor(int index) {//обработать исключение, если значение индекса недопустимо
         return door[index];
     }
 
