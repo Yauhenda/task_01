@@ -1,9 +1,13 @@
+package Algorithms;
+
+import Algorithms.Algorithm;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
-public class MontyHallAlgorithm extends Algorithm{
+public class MontyHallAlgorithm extends Algorithm {
 
     private static final int NUMBER_OF_TRIES = 100_000;
     private List<String> chooses = new ArrayList(Arrays.asList("k", "k", "a"));
@@ -21,7 +25,7 @@ public class MontyHallAlgorithm extends Algorithm{
 
     public String getWithoutChange(List<String> list) {
         Collections.shuffle(list);
-        return list.get((int)Math.floor(Math.random() * list.size()));
+        return list.get((int) Math.floor(Math.random() * list.size()));
     }
 
     @Override
@@ -33,7 +37,7 @@ public class MontyHallAlgorithm extends Algorithm{
 
     public void validateNumberOfTries() {
         if (NUMBER_OF_TRIES < 100 || NUMBER_OF_TRIES > 100000) {
-            throw new IllegalArgumentException(){
+            throw new IllegalArgumentException() {
             };
         }
     }

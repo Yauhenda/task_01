@@ -1,3 +1,5 @@
+package View;
+
 public abstract class MenuEntry {
 
     private String option;

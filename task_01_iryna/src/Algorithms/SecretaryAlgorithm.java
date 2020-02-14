@@ -1,9 +1,12 @@
+package Algorithms;
+
+import Algorithms.Algorithm;
+
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 
 
-public class SecretaryAlgorithm extends Algorithm{
+public class SecretaryAlgorithm extends Algorithm {
 
     private static final int NUMBER_OF_TRIES = 100_000;
     private static final int NUMBER_OF_CANDIDATES = 100;
@@ -29,8 +32,7 @@ public class SecretaryAlgorithm extends Algorithm{
         System.out.println(result);
     }
 
-    public int printBestCandidate(ArrayList<Integer> list, int n)
-    {
+    public int printBestCandidate(ArrayList<Integer> list, int n) {
         int result = 0;
 
         int sample_size = roundNo((float) (n / e));
@@ -41,21 +43,19 @@ public class SecretaryAlgorithm extends Algorithm{
                 best = i;
 
         for (int i = sample_size; i < n; i++)
-            if (list.get(i) >= list.get(best))
-            {
+            if (list.get(i) >= list.get(best)) {
                 best = i;
                 break;
             }
 
-        if (best >= sample_size){
+        if (best >= sample_size) {
             result++;
         }
 
         return result;
     }
 
-    public int roundNo(float num)
-    {
+    public int roundNo(float num) {
         return (int) (num < 0 ?
                 num - 0.5 : num + 0.5);
     }
