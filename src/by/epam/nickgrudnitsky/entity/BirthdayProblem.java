@@ -11,12 +11,12 @@ import static by.epam.nickgrudnitsky.util.Validator.validateNumberOfChecks;
 import static by.epam.nickgrudnitsky.util.Validator.validateNumberOfPeople;
 
 public class BirthdayProblem extends Problem {
-    private final static int DAYS_IN_A_YEAR = 365;
-    private static Random random = new Random();
     private int numberOfPeople;
     private int numberOfChecks;
     private int numberOfCoincidences;
     private Set<Integer> birthdays = new HashSet<>();
+    private static Random random = new Random();
+    private final static int DAYS_IN_A_YEAR = 365;
 
     public BirthdayProblem() {
         setName("Birthday problem.");
@@ -44,7 +44,7 @@ public class BirthdayProblem extends Problem {
     private void runCheck() {
         for (int i = 0; i < numberOfChecks; i++) {
             fillBirthdays();
-            
+
             if (birthdays.size() < numberOfPeople) {
                 numberOfCoincidences++;
             }

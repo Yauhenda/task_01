@@ -15,7 +15,7 @@ import static by.epam.nickgrudnitsky.util.Validator.validateMenuItem;
 public class AlgorithmService {
     private Map<Integer, Problem> startupMenu = new HashMap<>();
 
-    {
+    public AlgorithmService() {
         startupMenu.put(1, new MontyHallProblem());
         startupMenu.put(2, new BirthdayProblem());
         startupMenu.put(3, new MarriageProblem());

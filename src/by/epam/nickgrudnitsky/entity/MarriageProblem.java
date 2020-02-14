@@ -9,16 +9,13 @@ import static by.epam.nickgrudnitsky.util.Validator.*;
 
 public class MarriageProblem extends Problem {
     private int numberOfFiances;
+    private int numberOfChecks;
+    private int numberOfCorrectChoices;
+    private List<Integer> fiances = new ArrayList<>();
 
     public MarriageProblem() {
         setName("Marriage problem.");
     }
-
-    private int numberOfChecks;
-    private int fianceQuality;
-    private int chosenFiance;
-    private int numberOfCorrectChoices;
-    private List<Integer> fiances = new ArrayList<>();
 
     public void checkAlgorithm() {
         printIntroduction();
@@ -36,6 +33,8 @@ public class MarriageProblem extends Problem {
     }
 
     private void runCheck() {
+        int chosenFiance = 0;
+        int fianceQuality = 0;
         double step = Math.round(numberOfFiances / Math.exp(1));
         fillFiances();
 
@@ -44,14 +43,13 @@ public class MarriageProblem extends Problem {
             Collections.shuffle(fiances);
 
             for (int j = 0; j < numberOfFiances; j++) {
-                if (fianceQuality < fiances.get(j) && j < step) {
-                    fianceQuality = fiances.get(j);
-                    continue;
-                }
-
-                if (fianceQuality < fiances.get(j)) {
-                    chosenFiance = fiances.get(j);
-                    break;
+                int fiance = fiances.get(j);
+                if (fianceQuality < fiance) {
+                    if (j >= step){
+                        chosenFiance = fiance;
+                        break;
+                    }
+                    fianceQuality = fiance;
                 }
             }
 

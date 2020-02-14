@@ -4,6 +4,9 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class DataInput {
+    private DataInput() {
+    }
+
     public static int readNumber() {
         Scanner scanner = new Scanner(System.in);
         int number = -1;

@@ -11,6 +11,9 @@ public class Validator {
     public static final int MIN_NUMBER_OF_FIANCES = 10;
     public static final int MAX_NUMBER_OF_FIANCES = 1000;
 
+    private Validator() {
+    }
+
     public static boolean validateMenuItem(int number) {
         return number >= MIN_MENU_NUMBER && number < Menu.values().length;
     }

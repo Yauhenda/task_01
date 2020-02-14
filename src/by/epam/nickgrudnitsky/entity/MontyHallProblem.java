@@ -9,12 +9,12 @@ import static by.epam.nickgrudnitsky.util.DataInput.readNumber;
 import static by.epam.nickgrudnitsky.util.Validator.validateNumberOfChecks;
 
 public class MontyHallProblem extends Problem {
-    private static Random random = new Random();
-    private final static int DOORS = 3;
     private boolean chosenDoor;
     private int numberOfChecks;
     private int numberOfWinningsWhenChangeChoice = 0;
     private int numberOfWinningsWhenDoNotChangeChoice = 0;
+    private static Random random = new Random();
+    private final static int DOORS = 3;
 
     public void checkAlgorithm() {
         printIntroduction();
