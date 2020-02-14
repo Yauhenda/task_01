@@ -1,4 +1,5 @@
-package PACKAGE_NAME;
+public abstract class Algorithm {
 
-public class Algorithm {
+    public abstract void printResult();
+
 }
