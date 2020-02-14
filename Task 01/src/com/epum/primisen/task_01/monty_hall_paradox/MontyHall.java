@@ -1,8 +1,8 @@
 package com.epum.primisen.task_01.monty_hall_paradox;
 
-import com.epum.primisen.task_01.menu.Menu;
+import com.epum.primisen.task_01.menu.MenuInterface;
 
-public class MontyHall implements Menu {
+public class MontyHall implements MenuInterface {
 
     @Override
     public String takeTaskName(){
