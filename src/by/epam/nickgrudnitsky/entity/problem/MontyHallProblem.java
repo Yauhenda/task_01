@@ -1,6 +1,6 @@
-package by.epam.nickgrudnitsky.entity;
+package by.epam.nickgrudnitsky.entity.problem;
 
-
+import by.epam.nickgrudnitsky.entity.output.Printer;
 import by.epam.nickgrudnitsky.util.Validator;
 
 import java.util.Random;
@@ -16,17 +16,23 @@ public class MontyHallProblem extends Problem {
     private static Random random = new Random();
     private final static int DOORS = 3;
 
-    public void checkAlgorithm() {
-        printIntroduction();
+    public void checkAlgorithm(Printer printer) {
+        printer.print(gerIntroductionMessage());
 
         numberOfChecks = readNumber();
 
         if (validateNumberOfChecks(numberOfChecks)) {
             runCheck();
         } else {
-            printValidationFailure();
-            checkAlgorithm();
+            printer.print(getValidationFailureMessage());
+            checkAlgorithm(printer);
+            return;
         }
+
+        printer.print(getResultsMessage());
+
+        numberOfWinningsWhenChangeChoice = 0;
+        numberOfWinningsWhenDoNotChangeChoice = 0;
     }
 
     public MontyHallProblem() {
@@ -44,28 +50,23 @@ public class MontyHallProblem extends Problem {
                 numberOfWinningsWhenChangeChoice++;
             }
         }
-
-        printResults();
-
-        numberOfWinningsWhenChangeChoice = 0;
-        numberOfWinningsWhenDoNotChangeChoice = 0;
     }
 
     private void chooseDoor() {
         chosenDoor = random.nextInt(DOORS) + 1 == 1;
     }
 
-    private void printIntroduction() {
-        System.out.println("Enter the number of checks.");
+    private String gerIntroductionMessage() {
+        return "Enter the number of checks.\n";
     }
 
-    private void printValidationFailure() {
-        System.out.printf("The number of checks must be between %d and %d.\n",
+    private String getValidationFailureMessage() {
+        return String.format("The number of checks must be between %d and %d.\n",
                 Validator.MIN_NUMBER_OF_CHECKS, Validator.MAX_NUMBER_OF_CHECKS);
     }
 
-    private void printResults() {
-        System.out.printf("Wins out of %d:\n   when changing choices - %d.\n   when do not changing choices - %d.\n",
+    private String getResultsMessage() {
+        return String.format("Wins out of %d:\n   when changing choices - %d.\n   when do not changing choices - %d.\n",
                 numberOfChecks, numberOfWinningsWhenChangeChoice, numberOfWinningsWhenDoNotChangeChoice);
     }
 }

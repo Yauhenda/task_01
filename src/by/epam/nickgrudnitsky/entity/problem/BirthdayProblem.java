@@ -1,5 +1,6 @@
-package by.epam.nickgrudnitsky.entity;
+package by.epam.nickgrudnitsky.entity.problem;
 
+import by.epam.nickgrudnitsky.entity.output.Printer;
 import by.epam.nickgrudnitsky.util.Validator;
 
 import java.util.HashSet;
@@ -22,8 +23,8 @@ public class BirthdayProblem extends Problem {
         setName("Birthday problem.");
     }
 
-    public void checkAlgorithm() {
-        printIntroduction();
+    public void checkAlgorithm(Printer printer) {
+        printer.print(getIntroductionMessage());
 
         numberOfPeople = readNumber();
         numberOfChecks = readNumber();
@@ -31,12 +32,12 @@ public class BirthdayProblem extends Problem {
         if (validateNumberOfPeople(numberOfPeople) && validateNumberOfChecks(numberOfChecks)) {
             runCheck();
         } else {
-            printValidationFailure();
-            checkAlgorithm();
+            printer.print(getValidationFailureMessage());
+            checkAlgorithm(printer);
             return;
         }
 
-        printResults();
+        printer.print(getResultsMessage());
 
         numberOfCoincidences = 0;
     }
@@ -59,19 +60,19 @@ public class BirthdayProblem extends Problem {
         }
     }
 
-    private void printIntroduction() {
-        System.out.println("Enter the number of people and then number of checks.");
+    private String getIntroductionMessage() {
+        return "Enter the number of people and then number of checks.\n";
     }
 
-    private void printResults() {
-        System.out.printf("Birthdays coincided %d times with the number of people equal to %d and " +
+    private String getResultsMessage() {
+        return String.format("Birthdays coincided %d times with the number of people equal to %d and " +
                 "the number of iterations %d.\n", numberOfCoincidences, numberOfPeople, numberOfChecks);
     }
 
-    private void printValidationFailure() {
-        System.out.printf("The number of people must be between %d and %d.\n",
-                Validator.MIN_NUMBER_OF_PEOPLE, Validator.MAX_NUMBER_OF_PEOPLE);
-        System.out.printf("The number of checks must be between %d and %d.\n",
+    private String getValidationFailureMessage() {
+        return String.format("The number of people must be between %d and %d.\n" +
+                        "The number of checks must be between %d and %d.\n",
+                Validator.MIN_NUMBER_OF_PEOPLE, Validator.MAX_NUMBER_OF_PEOPLE,
                 Validator.MIN_NUMBER_OF_CHECKS, Validator.MAX_NUMBER_OF_CHECKS);
     }
 }
