@@ -29,24 +29,6 @@ public class BirthdayParadox extends Paradox {
         return formatter.toString();
     };
 
-    @Override
-    public String getResult() {
-        playAlgorithm(array);
-        return supplier.get();
-    }
-
-    @SuppressWarnings("all")
-    public static void resetVariables() {
-        frequencies = 0;
-
-        for (int i = 0; i < array.length; i++) {
-
-            for (int j = 0; j < array[i].length; j++) {
-                array[i][j] = 0;
-            }
-        }
-    }
-
     private static void playAlgorithm(short[][] array) {
         createGroups(array);
         sortHumansByBirthday(array);
@@ -82,6 +64,24 @@ public class BirthdayParadox extends Paradox {
                     break;
                 }
                 temp = shorts[j];
+            }
+        }
+    }
+
+    @Override
+    public String getResult() {
+        playAlgorithm(array);
+        return supplier.get();
+    }
+
+    @SuppressWarnings("all")
+    public static void resetVariables() {
+        frequencies = 0;
+
+        for (int i = 0; i < array.length; i++) {
+
+            for (int j = 0; j < array[i].length; j++) {
+                array[i][j] = 0;
             }
         }
     }

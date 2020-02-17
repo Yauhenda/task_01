@@ -15,7 +15,7 @@ public abstract class Paradox implements ModuleInterface {
         return id;
     }
 
-    static int getIdCounter() {
+    static int getIdCounter(){
         return idCounter;
     }
 
@@ -23,16 +23,16 @@ public abstract class Paradox implements ModuleInterface {
         return name;
     }
 
-    public abstract String getResult();
-
-    private synchronized int setId() {
+    synchronized private int setId() {
         ++idCounter;
         return idCounter;
     }
 
-    public static synchronized void resetIdCounter() {
+    public synchronized static void resetIdCounter(){
         idCounter = 0;
     }
+
+    public abstract String getResult();
 
     @Override
     public int hashCode() {

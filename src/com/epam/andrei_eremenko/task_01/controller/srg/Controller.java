@@ -22,7 +22,7 @@ public class Controller {
         selectItemViaMap(select, menu);
     }
 
-    private void selectItemViaMap(String select, Menu menu){
+    private void selectItemViaMap(String select, Menu menu) throws NumberFormatException {
         try {
             int temp = castSelectToInt(select);
 
@@ -77,6 +77,8 @@ public class Controller {
                 break;
             default:
                 new Printer<String>().print("The inputted data dose not match the menu");
+                break;
         }
     }
 }
+
