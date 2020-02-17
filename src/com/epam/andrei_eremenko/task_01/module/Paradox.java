@@ -1,6 +1,6 @@
 package com.epam.andrei_eremenko.task_01.module;
 
-public abstract class Paradox {
+public abstract class Paradox implements ModuleInterface {
 
     private static int idCounter = 0;
     private final int id;

@@ -19,9 +19,12 @@ public class Controller {
         menu.fillMenu();
         new Printer<String>().print(menu.printMenu());
         String select = sc.next();
+        selectItemViaMap(select, menu);
+    }
 
+    private void selectItemViaMap(String select, Menu menu) throws NumberFormatException {
         try {
-            int temp = selectItemViaMap1(select);
+            int temp = castSelectToInt(select);
 
             if (temp < 1 || temp > menu.getMenuSize() + 1) {
                 System.err.println("Inputted data does not match the menu");
@@ -41,7 +44,7 @@ public class Controller {
         }
     }
 
-    private int selectItemViaMap1(String select) throws NumberFormatException {
+    private int castSelectToInt(String select) throws NumberFormatException {
         return Integer.parseInt(select);
     }
 

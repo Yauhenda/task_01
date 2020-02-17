@@ -5,7 +5,7 @@ import java.util.Formatter;
 import java.util.Random;
 import java.util.function.Supplier;
 
-public class MontyHallParadox extends Paradox implements ModuleInterface {
+public class MontyHallParadox extends Paradox {
 
     private static final byte QUANTITY_OF_DOORS = 3;
     private static final byte VALUE_OF_CAR = 1;

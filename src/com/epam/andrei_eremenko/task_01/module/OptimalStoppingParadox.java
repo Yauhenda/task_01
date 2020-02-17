@@ -5,7 +5,7 @@ import java.util.Formatter;
 import java.util.Random;
 import java.util.function.Supplier;
 
-public class OptimalStoppingParadox extends Paradox implements ModuleInterface {
+public class OptimalStoppingParadox extends Paradox {
 
     private static final int QUANTITY_OF_GROOMS = 100;
     private static final int STEP = 10;
