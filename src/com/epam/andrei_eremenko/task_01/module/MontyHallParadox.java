@@ -28,6 +28,18 @@ public class MontyHallParadox extends Paradox {
         return formatter.toString();
     };
 
+    @Override
+    public String getResult() {
+        playAlgorithm(doors);
+        return supplier.get();
+    }
+
+    public static void resetVariables() {
+        winsQuantityWithChanging = 0;
+        winsQuantityWithoutChanging = 0;
+        Arrays.fill(doors, (byte) 0);
+    }
+
     private static void playAlgorithm(byte[] doors) {
 
         for (int i = 0; i < MontyHallParadox.QUANTITY_OF_LAUNCHES; i++) {
@@ -48,18 +60,6 @@ public class MontyHallParadox extends Paradox {
     private static void hideCar(byte[] doors) {
         doors[rand.nextInt(MontyHallParadox.QUANTITY_OF_DOORS)] =
                 MontyHallParadox.VALUE_OF_CAR;
-    }
-
-    @Override
-    public String getResult() {
-        playAlgorithm(doors);
-        return supplier.get();
-    }
-
-    public static void resetVariables() {
-        winsQuantityWithChanging = 0;
-        winsQuantityWithoutChanging = 0;
-        Arrays.fill(doors, (byte) 0);
     }
 
     @Override

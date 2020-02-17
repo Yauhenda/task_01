@@ -33,10 +33,30 @@ public class OptimalStoppingParadox extends Paradox {
         return formatter.toString();
     };
 
+    @Override
+    public String getResult() {
+        playAlgorithm();
+        return supplier.get();
+    }
+
+    public static void resetVariables() {
+        Arrays.fill(grooms, 0);
+        Arrays.fill(ratesAmount, 0);
+        Arrays.fill(averageRates, 0);
+    }
+
     private static void playAlgorithm() {
         calculateRates(OptimalStoppingParadox.grooms, OptimalStoppingParadox.ratesAmount);
         calculateAverageRates(OptimalStoppingParadox.ratesAmount,
                 OptimalStoppingParadox.averageRates);
+    }
+
+    private static void calculateRates(int[] grooms, int[] ratesAmount) {
+
+        for (int i = 0; i < OptimalStoppingParadox.QUANTITY_OF_TRIES; i++) {
+            addNewGrooms(grooms);
+            sumRates(grooms, ratesAmount);
+        }
     }
 
     private static void addNewGrooms(int[] grooms) {
@@ -63,6 +83,7 @@ public class OptimalStoppingParadox extends Paradox {
         int nextStep = OptimalStoppingParadox.STEP;
 
         while (nextStep < OptimalStoppingParadox.QUANTITY_OF_GROOMS) {
+            
             if (flag > ratesAmount.length - 1) {
                 break;
             }
@@ -82,14 +103,6 @@ public class OptimalStoppingParadox extends Paradox {
         }
     }
 
-    private static void calculateRates(int[] grooms, int[] ratesAmount) {
-
-        for (int i = 0; i < OptimalStoppingParadox.QUANTITY_OF_TRIES; i++) {
-            addNewGrooms(grooms);
-            sumRates(grooms, ratesAmount);
-        }
-    }
-
     private static void calculateAverageRates(int[] ratesAmount, double[] averageRates) {
 
         for (int i = 0; i < ratesAmount.length; i++) {
@@ -98,22 +111,8 @@ public class OptimalStoppingParadox extends Paradox {
         }
     }
 
-    public static void resetVariables() {
-        Arrays.fill(grooms, 0);
-        Arrays.fill(ratesAmount, 0);
-        Arrays.fill(averageRates, 0);
-    }
-
-    @Override
-    public String getResult() {
-        playAlgorithm();
-        return supplier.get();
-    }
-
     @Override
     public String toString() {
         return getName();
     }
 }
-
-
