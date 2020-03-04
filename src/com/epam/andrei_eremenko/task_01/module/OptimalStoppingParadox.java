@@ -79,24 +79,24 @@ public class OptimalStoppingParadox extends Paradox {
     }
 
     private static void sumRates(int[] grooms, int[] ratesAmount) {
-        int flag = 0;
+        int counter = 0;
         int nextStep = OptimalStoppingParadox.STEP;
 
         while (nextStep < OptimalStoppingParadox.QUANTITY_OF_GROOMS) {
-            
-            if (flag > ratesAmount.length - 1) {
+
+            if (counter > ratesAmount.length - 1) {
                 break;
             }
-            int temp = findTeBestGroomFromFirstInterval(grooms, nextStep);
+            int currentBestGrooms = findTeBestGroomFromFirstInterval(grooms, nextStep);
 
             for (int i = nextStep; i < grooms.length; i++) {
 
-                if (grooms[i] > temp) {
-                    ratesAmount[flag] += grooms[i];
-                    flag++;
+                if (grooms[i] > currentBestGrooms) {
+                    ratesAmount[counter] += grooms[i];
+                    counter++;
                     break;
                 } else if (i == grooms.length - 1) {
-                    flag++;
+                    counter++;
                 }
             }
             nextStep += OptimalStoppingParadox.STEP;
